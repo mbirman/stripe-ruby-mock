@@ -1098,6 +1098,59 @@ module StripeMock
       }.merge(params)
     end
 
+    def self.mock_subscription_schedule(params = {})
+      subscription_schedule_id = params[:id] || 'sub_sched_1HXr1MI4klAN39KxJYoD0NcL'
+
+      {
+        id: subscription_schedule_id,
+        object: 'subscription_schedule',
+        canceled_at: nil,
+        completed_at: nil,
+        created: 1601655732,
+        current_phase: { end_date: 1633150799, start_date: 1601614860 },
+        customer: 'cus_I8NFgOBCP0SX0i',
+        default_settings: {
+          billing_cycle_anchor: 'automatic',
+          billing_thresholds: nil,
+          collection_method: 'charge_automatically',
+          default_payment_method: nil,
+          invoice_settings: nil,
+          transfer_data: nil
+        },
+        end_behavior: 'release',
+        livemode: false,
+        metadata: {},
+        phases: [
+          {
+            add_invoice_items: [],
+            application_fee_percent: nil,
+            billing_cycle_anchor: nil,
+            billing_thresholds: nil,
+            collection_method: nil,
+            coupon: nil,
+            default_payment_method: nil,
+            default_tax_rates: [],
+            end_date: 1633150799,
+            invoice_settings: nil,
+            items: [
+              { billing_thresholds: nil, price: 'price_1HXr1LI4klAN39Kx4kWVdD3E', quantity: 1, tax_rates: [] },
+              { billing_thresholds: nil, price: 'price_1HXr1LI4klAN39Kx4adSqqIx', quantity: 1, tax_rates: [] },
+              { billing_thresholds: nil, price: 'price_1HXr1LI4klAN39KxwC2mrISd', quantity: 1, tax_rates: [] },
+              { billing_thresholds: nil, price: 'price_1HXr1LI4klAN39Kx8ylOLbxq', quantity: 1, tax_rates: [] }
+            ],
+            proration_behavior: 'create_prorations',
+            start_date: 1601614860,
+            transfer_data: nil,
+            trial_end: nil
+          }
+        ],
+        released_at: nil,
+        released_subscription: nil,
+        status: 'active',
+        subscription: 'sub_I87FLT5Y5bD10G'
+      }.merge(params)
+    end
+
     def self.mock_subscription_item(params = {})
       id = params[:id] || 'test_txn_default'
       {

@@ -23,6 +23,7 @@ module StripeMock
         klass.add_handler 'post /v1/subscription_schedules',      :new_subscription_schedule
         klass.add_handler 'get /v1/subscription_schedules',       :get_subscription_schedules
         klass.add_handler 'get /v1/subscription_schedules/(.*)',  :get_subscription_schedule
+        klass.add_handler 'post /v1/subscription_schedules/(.*)/cancel', :cancel_subscription_schedule
       end
 
       def new_subscription_schedule(route, method_url, params, headers)
@@ -54,6 +55,15 @@ module StripeMock
         subscription_schedule = assert_existence :subscription_schedule, subscription_schedule_id, subscription_schedules[subscription_schedule_id]
 
         subscription_schedule = subscription_schedule.clone
+        subscription_schedule
+      end
+
+      def cancel_subscription_schedule(route, method_url, params, headers)
+        route =~ method_url
+        subscription_schedule = assert_existence :subscription_schedule, $1, subscription_schedules[$1]
+
+        subscription_schedule[:status] = 'canceled'
+        subscription_schedule[:canceled_at] = Time.now.to_i
         subscription_schedule
       end
     end
